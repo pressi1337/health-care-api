@@ -1,0 +1,81 @@
+{
+  "Dimorphic hemmorhoids(piles)": {
+    "constipation": 1,
+    "pain_during_bowel_movements": 1,
+    "pain_in_anal_region": 1,
+    "bloody_stool": 1,
+    "irritation_in_anus": 1
+  },
+  "Heart attack": {
+    "vomiting": 1,
+    "breathlessness": 1,
+    "sweating": 1,
+    "chest_pain": 1
+  },
+  "Varicose veins": {
+    "fatigue": 1,
+    "cramps": 1,
+    "bruising": 1,
+    "obesity": 1,
+    "swollen_legs": 1,
+    "swollen_blood_vessels": 1,
+    "prominent_veins_on_calf": 1
+  },
+  "Hypothyroidism": {
+    "fatigue": 1,
+    "weight_gain": 1,
+    "cold_hands_and_feets": 1,
+    "mood_swings": 1,
+    "lethargy": 1,
+    "dizziness": 1,
+    "puffy_face_and_eyes": 1,
+    "enlarged_thyroid": 1,
+    "brittle_nails": 1,
+    "swollen_extremeties": 1,
+    "depression": 1,
+    "irritability": 1,
+    "abnormal_menstruation": 1
+  },
+  "Hyperthyroidism": {
+    "fatigue": 1,
+    "mood_swings": 1,
+    "weight_loss": 1,
+    "restlessness": 1,
+    "sweating": 1,
+    "diarrhoea": 1,
+    "fast_heart_rate": 1,
+    "excessive_hunger": 1,
+    "muscle_weakness": 1,
+    "irritability": 1,
+    "abnormal_menstruation": 1
+  },
+  "Hypoglycemia": {
+    "vomiting": 1,
+    "fatigue": 1,
+    "anxiety": 1,
+    "sweating": 1,
+    "headache": 1,
+    "nausea": 1,
+    "blurred_and_distorted_vision": 1,
+    "excessive_hunger": 1,
+    "drying_and_tingling_lips": 1,
+    "slurred_speech": 1,
+    "irritability": 1,
+    "palpitations": 1
+  },
+  "Osteoarthristis": {
+    "joint_pain": 1,
+    "neck_pain": 1,
+    "knee_pain": 1,
+    "hip_joint_pain": 1,
+    "swelling_joints": 1,
+    "painful_walking": 1
+  },
+  "Arthritis": {
+    "muscle_weakness": 1,
+    "stiff_neck": 1,
+    "swelling_joints": 1,
+    "movement_stiffness": 1,
+    "painful_walking": 1
+  }
+}
