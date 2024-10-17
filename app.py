@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 import joblib
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 with open('model.pkl', 'rb') as f:
     model = joblib.load(f)
@@ -298,42 +301,6 @@ disease_data = {
     "rusty_sputum": 1
   }
 }
-
-
-def predict_disease(disease_data, payload):
-    matched_diseases = {}
-
-    # Iterate over each disease in the dataset
-    for disease, symptoms in disease_data.items():
-        match_count = 0
-
-        # Count how many symptoms match the payload
-        for symptom in symptoms:
-            if symptom in payload and payload[symptom] == 1:
-                match_count += 1
-
-        # If there are matching symptoms, add to the results
-        if match_count > 0:
-            matched_diseases[disease] = match_count
-
-    # Sort diseases by the number of matching symptoms (descending)
-    sorted_diseases = sorted(matched_diseases.items(), key=lambda x: x[1], reverse=True)
-
-    # Return the predicted disease or "No disease"
-    if sorted_diseases:
-        return {"predicted_disease": sorted_diseases[0][0]}
-    else:
-        return {"predicted_disease": "No disease"}
-
-@app.route('/predict-infection', methods=['POST'])
-def predict_infection():
-
-    data = request.json
-    result = predict_disease(disease_data, data)
-    return jsonify(result)
-
-
-
 chronic_diseases = {
   "Dimorphic hemmorhoids(piles)": {
     "constipation": 1,
@@ -416,6 +383,42 @@ chronic_diseases = {
   }
 }
 
+def predict_disease(disease_data, payload):
+    matched_diseases = {}
+
+    # Iterate over each disease in the dataset
+    for disease, symptoms in disease_data.items():
+        match_count = 0
+
+        # Count how many symptoms match the payload
+        for symptom in symptoms:
+            if symptom in payload and payload[symptom] == 1:
+                match_count += 1
+
+        # If there are matching symptoms, add to the results
+        if match_count > 0:
+            matched_diseases[disease] = match_count
+
+    # Sort diseases by the number of matching symptoms (descending)
+    sorted_diseases = sorted(matched_diseases.items(), key=lambda x: x[1], reverse=True)
+
+    # Return the predicted disease or "No disease"
+    if sorted_diseases:
+        return {"predicted_disease": sorted_diseases[0][0]}
+    else:
+        return {"predicted_disease": "no_infection_disease"}
+
+@app.route('/predict-infection', methods=['POST'])
+def predict_infection():
+
+    data = request.json
+    result = predict_disease(disease_data, data)
+    return jsonify(result)
+
+
+
+
+
 def predict_conditions_disease(disease_data, payload):
     matched_diseases = {}
 
@@ -439,7 +442,7 @@ def predict_conditions_disease(disease_data, payload):
     if sorted_diseases:
         return {"predicted_disease": sorted_diseases[0][0]}
     else:
-        return {"predicted_disease": "No disease"}
+        return {"predicted_disease": "no_chronic_diseases"}
 
 @app.route('/predict-conditions', methods=['POST'])
 def predict_conditions():
@@ -460,16 +463,16 @@ def predict_heart():
 
         # Extract the values from the JSON payload
         age = int(data['age'])
-        sex = 1 if data['sex'].lower() == 'female' else 0  # Female: 1, Male: 0
+        sex = 1 if data['gender'].lower() == 'female' else 0  # Female: 1, Male: 0
         cp = int(data['cp'])
-        trestbps = int(data['trestbps'])
-        chol = int(data['chol'])
+        trestbps = int(data['Trestbps'])
+        chol = int(data['cholesterol'])
 
 
         # Perform prediction using machine learning model
         prediction = model.predict([[age, sex, cp, trestbps, chol]])
         if prediction[0] == 0:
-            return jsonify({"predicted_disease": "No disease"})
+            return jsonify({"predicted_disease": "no_heart_disease"})
         else:
             return jsonify({"predicted_disease": "Heart Disease"})
            
