@@ -9,7 +9,7 @@ data = {
     "itching": 1,
     "skin_rash": 1,
     "nodal_skin_eruptions": 1,
-    "dischromic_patches": 1
+    "dischromic_patchess": 1
   },
   "Allergy": {
     "continuous_sneezing": 1,
